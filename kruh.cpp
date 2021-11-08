@@ -135,6 +135,13 @@ int Kruh::cmp(const void *a, const void *b) {
     // return (prvy->polomer-druhy->polomer)*(-1); triey v opacnom poradi alebo return druhy->polomer-prvy->polomer;
 }
 
+int Kruh :: cmpStable (const void *a, const void *b){
+    Kruh *prvy= (Kruh *)a;
+    Kruh *druhy = (Kruh*)b;
+    int rozdiel = prvy->polomer-druhy->polomer;
+    return (rozdiel==0)?prvy->pocitadlo-druhy->pocitadlo:rozdiel;
+}
+
 void Kruh::utriedPoleKruhov(Kruh *pole, int pocet) {
     std::qsort((Kruh *)pole, pocet sizeof (Kruh), cmp);//ktore pole, kolko prvkov, velkost prvku (aby si vedel vyhradit miesto a potom na kazdy prvok vola cmp pointer na funkciu;
     //nevyhoda ked je niekolko rovnakych hodnot, negarantuje ze ked maju 2 hodnoty rovnake nepride k ich zamene, ak chceme aby zostali tak ako boli zadane;
