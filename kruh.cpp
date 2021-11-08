@@ -198,7 +198,7 @@ int Kruh::getInt(bool nula, bool zaporne) {
 int Kruh::generujSuborKruhov(const char *nazov, int kolko) {
     srand(time(NULL));
     std::ofstream fout;
-    fout.open("zapis.txt");
+    fout.open(nazov);
 
     try {
         if(!fout.is_open())
@@ -219,23 +219,29 @@ int Kruh::generujSuborKruhov(const char *nazov, int kolko) {
 
 Kruh *Kruh::precitajSuborKruhov(const char *nazov, int kolko) {
     std::ifstream fin;
-    fin.open("zapis.txt");
+    fin.open(nazov);
+    Kruh *pole;
+    try {
+        pole = new Kruh[kolko];
+    }
+    catch (std::bad_alloc &ex){
+        std::cout<<"Nepodarilo sa alokovat pamat!";
+    }
+    int i=-1;
 
     try {
         if (!fin.is_open())  //ak sa nepodarilo otvorit s !; otestovanie otvorenia subooru bez;
         {
             throw Kruh::streamError("Nepodarilo sa otvorit subor na citanie!");
         }
+        while (fin>>i){
+            ++i;
+            (pole+1)->polomer =i;
+        }
     }
     catch (const Kruh::streamError &ex){ //zachytenie vynimky;
         ex.getMsg();
         return ;//pointer na nulu ;
-    }
-
-    Kruh  *pole[kolko];
-
-    for (int i=0;i<kolko;++i){
-        std::cout<< (pole[i]);
     }
 
     fin.close();
