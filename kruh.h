@@ -98,6 +98,7 @@ public:
     static Kruh getMaxKruh (const Kruh*pole, int pocet);
     static void utriedPoleKruhov (Kruh *pole, int pocet); //pole budem triedit nemoze byt const , ziaadna static neni const na konci;
     static int cmp (const void *a, const void *b); //komparacna funkcia (pointer na void), musi byt schopna triedit akykolvek typ pointrerov;
+    static int cmpStable (const void *a, const void*b);
     static int getInt(bool nula=true, bool zaporne= true);
     static int generujSuborKruhov (const char *nazov, int kolko);
     static Kruh *precitajSuborKruhov (const char *nazov, int kolko);
