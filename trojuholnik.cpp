@@ -107,9 +107,9 @@ void Bod::vypisPoleBodov(const Bod *pole, const int pocet) {
   }
 }
 
-int Bod::cmp(const void *a, const void *b) {
-    Bod *A=(Bod*)a;
-    Bod *B=(Bod*)b;
+int Bod::cmp(const void *prvy, const void *druhy) {
+    Bod *A=(Bod*)prvy;
+    Bod *B=(Bod*)druhy;
     
     return ((float)(*A)<(float)(*B))?1:((float)(*A)>(float)(*B))?-1:0;
 }
